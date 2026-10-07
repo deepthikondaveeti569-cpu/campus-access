@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GPS Campus Map | CampusAccess</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .gps-page {
+            padding: 40px 6%;
+        }
+
+        .gps-header {
+            margin-bottom: 25px;
+        }
+
+        .gps-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .gps-header p {
+            color: #64748b;
+        }
+
+        .map-container {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        #campusMap {
+            width: 100%;
+            height: 600px;
+            border-radius: 15px;
+        }
+
+        .gps-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .gps-button {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #2563eb;
+            color: white;
+        }
+
+        .gps-button:hover {
+            opacity: 0.9;
+        }
+
+        .gps-status {
+            padding: 12px 15px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .location-marker {
+            font-size: 28px;
+        }
+
+        @media (max-width: 700px) {
+
+            #campusMap {
+                height: 450px;
+            }
+
+            .gps-page {
+                padding: 25px 4%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <a class="logo" href="index.html">
+        ♿ CampusAccess
+    </a>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="buildings.html">Buildings</a>
+
+        <a class="active" href="gps-map.html">GPS Map</a>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="add-building.html">Add Record</a>
+
+    </nav>
+
+</header>
+
+
+
+<main class="gps-page">
+
+
+    <div class="gps-header">
+
+        <span class="tag">
+            CAMPUS NAVIGATION
+        </span>
+
+        <h1>
+            📍 GPS Campus Map
+        </h1>
+
+        <p>
+            Find your current location and explore accessible campus buildings.
+        </p>
+
+    </div>
+
+
+
+    <div class="gps-controls">
+
+        <button
+            class="gps-button"
+            onclick="findMyLocation()"
+        >
+            📍 Find My Location
+        </button>
+
+        <button
+            class="gps-button"
+            onclick="goToCampus()"
+        >
+            🏫 Show Campus
+        </button>
+
+    </div>
+
+
+
+    <div
+        id="gpsStatus"
+        class="gps-status"
+    >
+        Click "Find My Location" to use your device location.
+    </div>
+
+
+
+    <div class="map-container">
+
+        <div id="campusMap"></div>
+
+    </div>
+
+
+</main>
+
+
+
+<footer>
+
+    Campus Accessibility Portal • CSE326 HTML Project
+
+</footer>
+
+
+
+<!-- Leaflet JavaScript -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<script>
+
+
+/*
+    LPU CAMPUS MAP
+
+    IMPORTANT:
+    These coordinates are only the initial map center.
+    We will replace them with verified building coordinates
+    when we add the complete campus building list.
+*/
+
+const campusLatitude = 31.2559;
+const campusLongitude = 75.7033;
+
+
+
+/*
+    Create map
+*/
+
+const map = L.map("campusMap").setView(
+    [campusLatitude, campusLongitude],
+    16
+);
+
+
+
+/*
+    OpenStreetMap map tiles
+*/
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        maxZoom: 19,
+        attribution:
+            '&copy; OpenStreetMap contributors'
+    }
+).addTo(map);
+
+
+
+/*
+    Campus marker
+*/
+
+const campusMarker = L.marker([
+    campusLatitude,
+    campusLongitude
+])
+.addTo(map)
+.bindPopup(
+    "<b>🏫 LPU Campus</b><br>CampusAccess"
+);
+/*
+    CAMPUS BUILDINGS
+*/
+
+const buildings = [
+    {
+        name: "Block 32",
+        latitude: 31.2562,
+        longitude: 75.7028,
+        accessibility: "♿ Highly Accessible"
+    },
+
+    {
+        name: "Block 34",
+        latitude: 31.2557,
+        longitude: 75.7030,
+        accessibility: "🟡 Partially Accessible"
+    },
+
+    {
+        name: "Block 36",
+        latitude: 31.2554,
+        longitude: 75.7036,
+        accessibility: "♿ Highly Accessible"
+    },
+
+    {
+        name: "Library",
+        latitude: 31.2558,
+        longitude: 75.7040,
+        accessibility: "♿ Highly Accessible"
+    },
+
+    {
+        name: "Admin Block",
+        latitude: 31.2564,
+        longitude: 75.7038,
+        accessibility: "🟡 Partially Accessible"
+    },
+
+    {
+        name: "Engineering Block",
+        latitude: 31.2549,
+        longitude: 75.7027,
+        accessibility: "🔴 Needs Improvement"
+    }
+];
+
+
+/*
+    ADD BUILDINGS TO MAP
+*/
+
+buildings.forEach(function(building) {
+
+    L.marker([
+        building.latitude,
+        building.longitude
+    ])
+    .addTo(map)
+    .bindPopup(
+        "<b>🏢 " + building.name + "</b><br>" +
+        building.accessibility
+    );
+
+});
+
+
+
+/*
+    Store current location marker
+*/
+
+let userMarker = null;
+
+let accuracyCircle = null;
+
+
+
+/*
+    FIND USER LOCATION
+*/
+
+function findMyLocation() {
+
+    const status =
+        document.getElementById("gpsStatus");
+
+
+    if (!navigator.geolocation) {
+
+        status.textContent =
+            "❌ GPS is not supported by this browser.";
+
+        return;
+    }
+
+
+    status.textContent =
+        "📡 Detecting your location...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+            const accuracy =
+                position.coords.accuracy;
+
+
+
+            /*
+                Remove previous marker
+            */
+
+            if (userMarker) {
+
+                map.removeLayer(userMarker);
+
+            }
+
+
+            if (accuracyCircle) {
+
+                map.removeLayer(accuracyCircle);
+
+            }
+
+
+
+            /*
+                Create user location marker
+            */
+
+            userMarker = L.marker(
+                [latitude, longitude]
+            )
+            .addTo(map)
+            .bindPopup(
+                "<b>📍 You are here</b><br>" +
+                "Accuracy: approximately " +
+                Math.round(accuracy) +
+                " metres"
+            )
+            .openPopup();
+
+
+
+            /*
+                Accuracy circle
+            */
+
+            accuracyCircle = L.circle(
+                [latitude, longitude],
+                {
+                    radius: accuracy
+                }
+            ).addTo(map);
+
+
+
+            /*
+                Move map to user
+            */
+
+            map.setView(
+                [latitude, longitude],
+                18
+            );
+
+
+
+            status.textContent =
+                "✅ Your location has been detected.";
+
+        },
+
+
+        function(error) {
+
+            if (error.code === 1) {
+
+                status.textContent =
+                    "❌ Location permission was denied. Please allow location access in your browser.";
+
+            }
+
+            else if (error.code === 2) {
+
+                status.textContent =
+                    "❌ Your location could not be determined.";
+
+            }
+
+            else if (error.code === 3) {
+
+                status.textContent =
+                    "⏳ Location request timed out. Try again.";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "❌ Unable to detect your location.";
+
+            }
+
+        },
+
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+
+
+/*
+    RETURN TO CAMPUS
+*/
+
+function goToCampus() {
+
+    map.setView(
+        [campusLatitude, campusLongitude],
+        16
+    );
+
+    campusMarker.openPopup();
+
+    document.getElementById("gpsStatus").textContent =
+        "🏫 Showing LPU campus.";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

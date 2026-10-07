@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Accessibility Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="index.html">♿ CampusAccess</a>
+    <nav>
+      <a class="active" href="index.html">Home</a>
+      <a href="buildings.html">Buildings</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-building.html">Add Record</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="tag">CAMPUS ACCESSIBILITY INFORMATION PORTAL</span>
+        <h1>Find accessible facilities across your campus.</h1>
+        <p>Quickly check ramps, lifts, accessible entrances and other facilities before visiting a campus building.</p>
+        <div class="home-search">
+    <input id="homeSearch" type="text" placeholder="🔍 Search for a building...">
+
+    <button type="button" class="search-btn" onclick="searchBuilding()">
+        Search
+    </button>
+</div> 
+        <div class="hero-actions">
+          <a class="btn primary" href="buildings.html">Explore Buildings</a>
+          <a class="btn secondary" href="dashboard.html">View Dashboard</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="big-icon">♿</div>
+        <h3>Accessibility at a glance</h3>
+        <p>Building-wise information designed to make campus navigation easier.</p>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><strong>12</strong><span>Buildings</span></div>
+      <div class="stat"><strong>9</strong><span>Ramps</span></div>
+      <div class="stat"><strong>8</strong><span>Lifts</span></div>
+      <div class="stat"><strong>10</strong><span>Accessible Entrances</span></div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <span class="tag">QUICK ACCESS</span>
+          <h2>What do you need?</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <a class="feature-card" href="buildings.html">
+          <span>🏢</span><h3>Find a Building</h3><p>Search and filter buildings by accessibility facilities.</p>
+        </a>
+        <a class="feature-card" href="dashboard.html">
+          <span>📊</span><h3>Accessibility Dashboard</h3><p>See a summary of campus accessibility information.</p>
+        </a>
+        <a class="feature-card" href="add-building.html">
+          <span>➕</span><h3>Add or Update</h3><p>Use a structured form to add or update a building record.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Campus Accessibility Portal • CSE326 HTML Project</footer>
+  <script>
+function searchBuilding() {
+    const search = document.getElementById("homeSearch").value.trim();
+
+    if (search === "") {
+        alert("Please enter a building name.");
+        return;
+    }
+
+    window.location.href =
+        "buildings.html?search=" + encodeURIComponent(search);
+}
+</script>
+</body>
+</html>

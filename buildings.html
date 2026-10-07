@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buildings | CampusAccess</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a class="logo" href="index.html">
+        ♿ CampusAccess
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="buildings.html">Buildings</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-building.html">Add Record</a>
+    </nav>
+
+</header>
+
+
+<main class="section">
+
+    <span class="tag">CAMPUS DIRECTORY</span>
+
+    <h1>Accessible Buildings</h1>
+
+    <p class="page-description">
+        Explore campus buildings and check their accessibility facilities.
+    </p>
+
+
+    <div class="building-controls">
+
+        <div class="building-search">
+            <span>🔍</span>
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="Search building or block..."
+            >
+        </div>
+
+
+        <select id="filterSelect">
+
+            <option value="all">
+                All Facilities
+            </option>
+
+            <option value="ramp">
+                ♿ Ramp Available
+            </option>
+
+            <option value="lift">
+                🛗 Lift Available
+            </option>
+
+            <option value="entrance">
+                🚪 Accessible Entrance
+            </option>
+
+            <option value="washroom">
+                🚻 Accessible Washroom
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div id="buildingGrid" class="building-grid"></div>
+
+
+    <div id="noResults" class="no-results">
+        <div>🔎</div>
+
+        <h3>No buildings found</h3>
+
+        <p>
+            Try another building name or change the filter.
+        </p>
+    </div>
+
+</main>
+
+
+<footer>
+    Campus Accessibility Portal • CSE326 HTML Project
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

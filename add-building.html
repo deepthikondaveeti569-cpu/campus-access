@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Record | CampusAccess</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="navbar">
+  <a class="logo" href="index.html">♿ CampusAccess</a>
+  <nav>
+    <a href="index.html">Home</a><a href="buildings.html">Buildings</a>
+    <a href="dashboard.html">Dashboard</a><a class="active" href="add-building.html">Add Record</a>
+  </nav>
+</header>
+
+<main class="section narrow">
+  <span class="tag">STRUCTURED FORM</span>
+  <h1>Add / Update Accessibility Record</h1>
+  <form id="buildingForm" class="form-card">
+    <label>Building Name<input name="building" required placeholder="Example: Block 32"></label>
+    <label>Location<input name="location" required placeholder="Example: Near Main Gate"></label>
+    <label>Ramp
+      <select name="ramp"><option>Available</option><option>Not Available</option></select>
+    </label>
+    <label>Lift
+      <select name="lift"><option>Available</option><option>Not Available</option></select>
+    </label>
+    <label>Accessible Entrance
+      <select name="entrance"><option>Available</option><option>Not Available</option></select>
+    </label>
+    <label>Accessible Washroom
+      <select name="washroom"><option>Available</option><option>Not Available</option></select>
+    </label>
+    <button class="btn primary" type="submit">Save Record</button>
+    <p id="formMessage" class="success"></p>
+  </form>
+</main>
+<footer>Campus Accessibility Portal • CSE326 HTML Project</footer>
+<script>
+document.getElementById("buildingForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  document.getElementById("formMessage").textContent =
+    "Record saved successfully! (Demo version)";
+  this.reset();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Details | CampusAccess</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="logo" href="index.html">♿ CampusAccess</a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="buildings.html">Buildings</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-building.html">Add Record</a>
+    </nav>
+</header>
+
+
+<main class="section">
+
+    <span class="tag">BUILDING INFORMATION</span>
+
+    <h1 id="title">Building Details</h1>
+
+    <p id="location" class="building-location"></p>
+
+
+    <div class="details-grid">
+
+        <div class="panel">
+
+            <h2>Accessibility Status</h2>
+
+            <div id="status" class="status-box">
+                🟢 Highly Accessible
+            </div>
+
+            <h2>Accessibility Facilities</h2>
+
+            <div class="facility-list">
+
+                <div class="facility">
+                    <span>♿</span>
+                    <div>
+                        <strong>Ramp</strong>
+                        <p id="ramp"></p>
+                    </div>
+                </div>
+
+                <div class="facility">
+                    <span>🛗</span>
+                    <div>
+                        <strong>Lift</strong>
+                        <p id="lift"></p>
+                    </div>
+                </div>
+
+                <div class="facility">
+                    <span>🚪</span>
+                    <div>
+                        <strong>Accessible Entrance</strong>
+                        <p id="entrance"></p>
+                    </div>
+                </div>
+
+                <div class="facility">
+                    <span>🚻</span>
+                    <div>
+                        <strong>Accessible Washroom</strong>
+                        <p id="washroom"></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel route-panel">
+
+            <h2>🧭 Recommended Accessible Route</h2>
+
+            <div class="route">
+
+                <div class="route-point">
+                    <span>📍</span>
+                    <strong>Main Gate</strong>
+                </div>
+
+                <div class="route-line"></div>
+
+                <div class="route-point">
+                    <span>🛣️</span>
+                    <strong>Central Road</strong>
+                </div>
+
+                <div class="route-line"></div>
+
+                <div class="route-point">
+                    <span>♿</span>
+                    <strong>Accessible Entrance</strong>
+                </div>
+
+                <div class="route-line"></div>
+
+                <div class="route-point">
+                    <span>🏢</span>
+                    <strong id="routeBuilding">Building</strong>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+<!-- CAMPUS ACCESSIBILITY MAP -->
+
+<section class="campus-map-section">
+
+    <span class="tag">CAMPUS NAVIGATION</span>
+
+    <h2>Campus Accessibility Map</h2>
+
+    <p class="map-description">
+        Explore important campus locations and identify buildings
+        based on their accessibility status.
+    </p>
+
+    <div class="campus-map">
+
+        <div class="map-road road-horizontal"></div>
+        <div class="map-road road-vertical"></div>
+
+        <div class="map-location main-gate">
+            <span>🚪</span>
+            <strong>Main Gate</strong>
+        </div>
+
+        <div class="map-location block32">
+            <span>🏢</span>
+            <strong>Block 32</strong>
+            <small>🟢 Accessible</small>
+        </div>
+
+        <div class="map-location block34">
+            <span>🏢</span>
+            <strong>Block 34</strong>
+            <small>🟡 Partial</small>
+        </div>
+
+        <div class="map-location block36">
+            <span>🏢</span>
+            <strong>Block 36</strong>
+            <small>🟢 Accessible</small>
+        </div>
+
+        <div class="map-location library">
+            <span>📚</span>
+            <strong>Library</strong>
+            <small>🟢 Accessible</small>
+        </div>
+
+        <div class="map-location admin">
+            <span>🏛️</span>
+            <strong>Admin Block</strong>
+            <small>🟡 Partial</small>
+        </div>
+
+        <div class="map-location engineering">
+            <span>⚙️</span>
+            <strong>Engineering</strong>
+            <small>🔴 Needs Improvement</small>
+        </div>
+
+    </div>
+
+    <div class="map-legend">
+
+        <span>
+            <i class="legend-dot green"></i>
+            Highly Accessible
+        </span>
+
+        <span>
+            <i class="legend-dot yellow"></i>
+            Partially Accessible
+        </span>
+
+        <span>
+            <i class="legend-dot red"></i>
+            Needs Improvement
+        </span>
+
+    </div>
+
+</section>
+
+
+<br>
+
+<a class="btn primary" href="buildings.html">
+    ← Back to Buildings
+</a>
+
+
+<footer>
+    Campus Accessibility Portal • CSE326 HTML Project
+</footer>
+
+
+<script>
+
+const name = new URLSearchParams(window.location.search).get("name");
+
+
+const buildings = {
+
+    "Block 32": {
+        location: "Near Main Gate",
+        ramp: "✓ Available",
+        lift: "✓ Available",
+        entrance: "✓ Available",
+        washroom: "✓ Available",
+        status: "🟢 Highly Accessible"
+    },
+
+    "Block 34": {
+        location: "Central Campus",
+        ramp: "✓ Available",
+        lift: "✕ Not Available",
+        entrance: "✓ Available",
+        washroom: "✕ Not Available",
+        status: "🟡 Partially Accessible"
+    },
+
+    "Block 36": {
+        location: "Academic Zone",
+        ramp: "✓ Available",
+        lift: "✓ Available",
+        entrance: "✓ Available",
+        washroom: "✓ Available",
+        status: "🟢 Highly Accessible"
+    },
+
+    "Library": {
+        location: "Knowledge Centre",
+        ramp: "✓ Available",
+        lift: "✓ Available",
+        entrance: "✓ Available",
+        washroom: "✓ Available",
+        status: "🟢 Highly Accessible"
+    },
+
+    "Admin Block": {
+        location: "Main Road",
+        ramp: "✕ Not Available",
+        lift: "✓ Available",
+        entrance: "✓ Available",
+        washroom: "✕ Not Available",
+        status: "🟡 Partially Accessible"
+    },
+
+    "Engineering Block": {
+        location: "North Campus",
+        ramp: "✓ Available",
+        lift: "✕ Not Available",
+        entrance: "✕ Not Available",
+        washroom: "✕ Not Available",
+        status: "🔴 Needs Improvement"
+    }
+
+};
+
+
+const building = buildings[name];
+
+
+if (building) {
+
+    document.getElementById("title").textContent = name;
+
+    document.getElementById("location").textContent =
+        "📍 " + building.location;
+
+    document.getElementById("ramp").textContent =
+        building.ramp;
+
+    document.getElementById("lift").textContent =
+        building.lift;
+
+    document.getElementById("entrance").textContent =
+        building.entrance;
+
+    document.getElementById("washroom").textContent =
+        building.washroom;
+
+    document.getElementById("status").textContent =
+        building.status;
+
+    document.getElementById("routeBuilding").textContent =
+        name;
+
+}
+
+</script>
+
+</body>
+</html>
