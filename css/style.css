@@ -1427,172 +1427,172 @@ footer {
     }
 
 }
-/* ===== CampusAccess theme: Midnight Black + Electric Cobalt Blue + Acid Lime =====
-   Add this AFTER your existing stylesheet on every page:
-   <link rel="stylesheet" href="theme.css">
+/* ===== CampusAccess theme: Muted Sage Grey + Warm Cream Beige + Deep Burgundy =====
+   Paste at the BOTTOM of style.css (replace the old midnight/cobalt/lime theme block).
 */
 
 :root {
-  --midnight: #030407;
-  --midnight-2: #0a0d16;      /* slightly lighter surface for cards */
-  --cobalt: #1558c9;
-  --cobalt-light: #4b86ee;    /* readable cobalt for text/links on black */
-  --lime: #d4ff24;
-  --text: #f2f5fb;
-  --muted: #9aa4b8;
-  --border: rgba(75, 134, 238, 0.28);
+  --sage: #a5a79b;
+  --sage-dark: #8c8e82;
+  --beige: #e8d2b5;
+  --beige-light: #f3e7d4;
+  --burgundy: #590907;
+  --burgundy-light: #7a1512;
+  --text: #2a0c0b;            /* very dark burgundy-brown for body text */
+  --muted: #4a2a28;
+  --border: rgba(89, 9, 7, 0.25);
 }
 
 /* ---------- Base ---------- */
 html, body {
-  background: var(--midnight) !important;
+  background: var(--sage) !important;
   color: var(--text) !important;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   line-height: 1.6;
 }
 
-/* Soft cobalt glow behind the page top, like the reference design */
+/* Bold diagonal burgundy band in the top-right, like the shoe design */
 body {
   background-image:
-    radial-gradient(ellipse 70% 45% at 85% 0%, rgba(21, 88, 201, 0.35), transparent 70%) !important;
+    linear-gradient(115deg, transparent 62%, rgba(89, 9, 7, 0.9) 62%, rgba(89, 9, 7, 0.9) 82%, transparent 82%) !important;
   background-repeat: no-repeat !important;
+  background-size: 100% 620px !important;
+  background-position: top right !important;
 }
 
 h1, h2, h3, h4 {
-  color: var(--text) !important;
+  color: var(--burgundy) !important;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  font-weight: 800;
 }
 
 h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); }
 
 p, li, span, small { color: var(--muted); }
 
-a { color: var(--cobalt-light); text-decoration: none; }
-a:hover { color: var(--lime); }
+a { color: var(--burgundy); text-decoration: none; }
+a:hover { color: var(--burgundy-light); text-decoration: underline; }
 
 /* ---------- Navbar ---------- */
 header, nav, .navbar, .nav {
-  background: rgba(3, 4, 7, 0.88) !important;
-  backdrop-filter: blur(10px);
+  background: rgba(165, 167, 155, 0.92) !important;
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border) !important;
 }
 
-nav a, header a, .navbar a { color: var(--text) !important; }
-nav a:hover, header a:hover, .navbar a:hover { color: var(--lime) !important; }
+nav a, header a, .navbar a { color: var(--burgundy) !important; font-weight: 600; }
+nav a:hover, header a:hover, .navbar a:hover { color: var(--burgundy-light) !important; }
 
-/* Logo / brand */
-.logo, .brand, nav a:first-child { color: var(--lime) !important; font-weight: 700; }
+.logo, .brand, nav a:first-child { color: var(--burgundy) !important; font-weight: 800; }
 
 /* ---------- Hero ---------- */
 .hero, .hero-section, main > section:first-of-type {
-  background:
-    radial-gradient(ellipse 60% 70% at 80% 40%, rgba(21, 88, 201, 0.45), transparent 70%),
-    var(--midnight) !important;
+  background: transparent !important;
 }
 
-/* Small label above the main heading (e.g. CAMPUS ACCESSIBILITY INFORMATION PORTAL) */
 .eyebrow, .tagline, .hero-label, .badge {
-  color: var(--lime) !important;
+  color: var(--burgundy) !important;
   letter-spacing: 0.12em;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ---------- Buttons ---------- */
 button, .btn, .button, input[type="submit"], a[class*="btn"], a[class*="button"] {
-  background: var(--lime) !important;
-  color: var(--midnight) !important;   /* dark text on lime = high contrast */
+  background: var(--burgundy) !important;
+  color: var(--beige) !important;          /* beige on burgundy = high contrast */
   border: none !important;
   border-radius: 999px !important;
   padding: 0.7rem 1.5rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none !important;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 button:hover, .btn:hover, .button:hover, input[type="submit"]:hover,
 a[class*="btn"]:hover, a[class*="button"]:hover {
-  color: var(--midnight) !important;
+  background: var(--burgundy-light) !important;
+  color: var(--beige-light) !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 255, 36, 0.28);
 }
 
-/* Secondary buttons: cobalt outline */
+/* Secondary buttons: burgundy outline */
 .btn-secondary, .secondary, a[class*="secondary"], a[class*="outline"] {
   background: transparent !important;
-  color: var(--text) !important;
-  border: 1.5px solid var(--cobalt) !important;
+  color: var(--burgundy) !important;
+  border: 2px solid var(--burgundy) !important;
 }
 .btn-secondary:hover, .secondary:hover, a[class*="secondary"]:hover, a[class*="outline"]:hover {
-  background: var(--cobalt) !important;
-  color: #fff !important;
-  box-shadow: none;
+  background: var(--burgundy) !important;
+  color: var(--beige) !important;
 }
 
 /* ---------- Cards / panels ---------- */
 .card, .box, .panel, .stat, .stats > *, .feature, .quick-card,
 [class*="card"], [class*="stat"], [class*="panel"] {
-  background: var(--midnight-2) !important;
+  background: var(--beige) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 18px !important;
+  border-radius: 14px !important;
   color: var(--text) !important;
-  box-shadow: none !important;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(89, 9, 7, 0.12) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover, [class*="card"]:hover {
-  border-color: var(--lime) !important;
   transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(89, 9, 7, 0.2) !important;
 }
 
 /* Big numbers (12 Buildings, 9 Ramps...) */
 .stat strong, .stat b, [class*="stat"] strong, [class*="stat"] b, .number, .count {
-  color: var(--lime) !important;
+  color: var(--burgundy) !important;
 }
 
-/* The "Accessibility at a glance" panel gets the cobalt treatment */
+/* "Accessibility at a glance" panel: solid burgundy with beige text */
 .hero-card, .glance, aside {
-  background: linear-gradient(145deg, var(--cobalt), #0c2f73) !important;
+  background: var(--burgundy) !important;
   border: none !important;
-  border-radius: 22px !important;
-  color: #fff !important;
+  border-radius: 18px !important;
+  color: var(--beige) !important;
 }
-.hero-card *, .glance *, aside * { color: #fff !important; }
-.hero-card strong, .glance strong, aside strong { color: var(--lime) !important; }
+.hero-card *, .glance *, aside * { color: var(--beige) !important; }
+.hero-card strong, .glance strong, aside strong { color: #fff !important; }
 
 /* ---------- Forms (Search, Add Record) ---------- */
 input, select, textarea {
-  background: var(--midnight-2) !important;
+  background: var(--beige-light) !important;
   color: var(--text) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 12px !important;
+  border-radius: 10px !important;
   padding: 0.7rem 1rem;
 }
-input::placeholder, textarea::placeholder { color: var(--muted); }
+input::placeholder, textarea::placeholder { color: #7b5b58; }
 input:focus, select:focus, textarea:focus {
-  outline: 2px solid var(--lime) !important;
+  outline: 3px solid var(--burgundy) !important;
   outline-offset: 2px;
-  border-color: transparent !important;
 }
-label { color: var(--text) !important; }
+label { color: var(--burgundy) !important; font-weight: 600; }
 
 /* ---------- Tables (Buildings / Dashboard) ---------- */
-table { background: var(--midnight-2) !important; border-collapse: collapse; width: 100%; }
+table { background: var(--beige) !important; border-collapse: collapse; width: 100%; }
 th {
-  background: var(--cobalt) !important;
-  color: #fff !important;
+  background: var(--burgundy) !important;
+  color: var(--beige) !important;
   text-align: left;
 }
-td, th { border-bottom: 1px solid var(--border) !important; padding: 0.8rem 1rem; color: var(--text) !important; }
-tr:hover td { background: rgba(21, 88, 201, 0.15) !important; }
+td, th { border-bottom: 1px solid var(--border) !important; padding: 0.8rem 1rem; }
+td { color: var(--text) !important; }
+tr:hover td { background: var(--beige-light) !important; }
 
 /* ---------- Footer ---------- */
 footer {
-  background: var(--midnight) !important;
-  border-top: 1px solid var(--border) !important;
-  color: var(--muted) !important;
+  background: var(--burgundy) !important;
+  border-top: none !important;
+  color: var(--beige) !important;
 }
+footer * { color: var(--beige) !important; }
 
-/* ---------- Accessibility (important for an accessibility portal!) ---------- */
-:focus-visible { outline: 3px solid var(--lime) !important; outline-offset: 3px; }
+/* ---------- Accessibility ---------- */
+:focus-visible { outline: 3px solid var(--burgundy) !important; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
