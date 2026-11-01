@@ -1597,3 +1597,30 @@ footer * { color: var(--beige) !important; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+/* ===== Fonts: Bebas Neue (headings) + Inter (body) ===== */
+body, p, li, a, span, input, select, textarea, button, label, td, th {
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+
+h1, h2, h3, h4, .logo, .brand {
+  font-family: "Bebas Neue", Impact, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 6rem) !important; }
+h2 { font-size: clamp(2rem, 5vw, 3.2rem) !important; }
+h3 { font-size: clamp(1.4rem, 3vw, 2rem) !important; }
+
+.logo, .brand, nav a:first-child {
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons keep the clean body font */
+button, .btn, .button, input[type="submit"] {
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: 0.02em;
+}
