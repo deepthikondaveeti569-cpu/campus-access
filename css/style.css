@@ -1427,3 +1427,173 @@ footer {
     }
 
 }
+/* ===== CampusAccess theme: Midnight Black + Electric Cobalt Blue + Acid Lime =====
+   Add this AFTER your existing stylesheet on every page:
+   <link rel="stylesheet" href="theme.css">
+*/
+
+:root {
+  --midnight: #030407;
+  --midnight-2: #0a0d16;      /* slightly lighter surface for cards */
+  --cobalt: #1558c9;
+  --cobalt-light: #4b86ee;    /* readable cobalt for text/links on black */
+  --lime: #d4ff24;
+  --text: #f2f5fb;
+  --muted: #9aa4b8;
+  --border: rgba(75, 134, 238, 0.28);
+}
+
+/* ---------- Base ---------- */
+html, body {
+  background: var(--midnight) !important;
+  color: var(--text) !important;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Soft cobalt glow behind the page top, like the reference design */
+body {
+  background-image:
+    radial-gradient(ellipse 70% 45% at 85% 0%, rgba(21, 88, 201, 0.35), transparent 70%) !important;
+  background-repeat: no-repeat !important;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text) !important;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); }
+
+p, li, span, small { color: var(--muted); }
+
+a { color: var(--cobalt-light); text-decoration: none; }
+a:hover { color: var(--lime); }
+
+/* ---------- Navbar ---------- */
+header, nav, .navbar, .nav {
+  background: rgba(3, 4, 7, 0.88) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border) !important;
+}
+
+nav a, header a, .navbar a { color: var(--text) !important; }
+nav a:hover, header a:hover, .navbar a:hover { color: var(--lime) !important; }
+
+/* Logo / brand */
+.logo, .brand, nav a:first-child { color: var(--lime) !important; font-weight: 700; }
+
+/* ---------- Hero ---------- */
+.hero, .hero-section, main > section:first-of-type {
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 40%, rgba(21, 88, 201, 0.45), transparent 70%),
+    var(--midnight) !important;
+}
+
+/* Small label above the main heading (e.g. CAMPUS ACCESSIBILITY INFORMATION PORTAL) */
+.eyebrow, .tagline, .hero-label, .badge {
+  color: var(--lime) !important;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+button, .btn, .button, input[type="submit"], a[class*="btn"], a[class*="button"] {
+  background: var(--lime) !important;
+  color: var(--midnight) !important;   /* dark text on lime = high contrast */
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+button:hover, .btn:hover, .button:hover, input[type="submit"]:hover,
+a[class*="btn"]:hover, a[class*="button"]:hover {
+  color: var(--midnight) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 255, 36, 0.28);
+}
+
+/* Secondary buttons: cobalt outline */
+.btn-secondary, .secondary, a[class*="secondary"], a[class*="outline"] {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1.5px solid var(--cobalt) !important;
+}
+.btn-secondary:hover, .secondary:hover, a[class*="secondary"]:hover, a[class*="outline"]:hover {
+  background: var(--cobalt) !important;
+  color: #fff !important;
+  box-shadow: none;
+}
+
+/* ---------- Cards / panels ---------- */
+.card, .box, .panel, .stat, .stats > *, .feature, .quick-card,
+[class*="card"], [class*="stat"], [class*="panel"] {
+  background: var(--midnight-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card:hover, [class*="card"]:hover {
+  border-color: var(--lime) !important;
+  transform: translateY(-3px);
+}
+
+/* Big numbers (12 Buildings, 9 Ramps...) */
+.stat strong, .stat b, [class*="stat"] strong, [class*="stat"] b, .number, .count {
+  color: var(--lime) !important;
+}
+
+/* The "Accessibility at a glance" panel gets the cobalt treatment */
+.hero-card, .glance, aside {
+  background: linear-gradient(145deg, var(--cobalt), #0c2f73) !important;
+  border: none !important;
+  border-radius: 22px !important;
+  color: #fff !important;
+}
+.hero-card *, .glance *, aside * { color: #fff !important; }
+.hero-card strong, .glance strong, aside strong { color: var(--lime) !important; }
+
+/* ---------- Forms (Search, Add Record) ---------- */
+input, select, textarea {
+  background: var(--midnight-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  padding: 0.7rem 1rem;
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--lime) !important;
+  outline-offset: 2px;
+  border-color: transparent !important;
+}
+label { color: var(--text) !important; }
+
+/* ---------- Tables (Buildings / Dashboard) ---------- */
+table { background: var(--midnight-2) !important; border-collapse: collapse; width: 100%; }
+th {
+  background: var(--cobalt) !important;
+  color: #fff !important;
+  text-align: left;
+}
+td, th { border-bottom: 1px solid var(--border) !important; padding: 0.8rem 1rem; color: var(--text) !important; }
+tr:hover td { background: rgba(21, 88, 201, 0.15) !important; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--midnight) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+}
+
+/* ---------- Accessibility (important for an accessibility portal!) ---------- */
+:focus-visible { outline: 3px solid var(--lime) !important; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
